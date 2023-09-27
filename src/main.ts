@@ -40,13 +40,19 @@ async function loadAnimation() {
   animationContainer.remove();
 }
 
+function getElementContentWidth(element: HTMLElement) {
+  const styles = window.getComputedStyle(element);
+  const padding = parseFloat(styles.paddingLeft) + parseFloat(styles.paddingRight);
+  return element.clientWidth - padding;
+}
+
 function lineBackground() {
   const spacing = window.innerWidth > 768 ? 335: 200;
   const element = document.querySelector('.background') as HTMLDivElement;
 
   element.innerHTML = '';
 
-  const lines = Math.ceil(window.innerWidth / spacing);
+  const lines = Math.ceil(getElementContentWidth(element) / spacing);
   const lineElements = [];
 
   for (let i = 0; i < lines; i++) {
