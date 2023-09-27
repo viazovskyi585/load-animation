@@ -28,6 +28,30 @@ body {
   justify-content: center;
 }
 
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.background .line {
+  width: 1px;
+  background-color: rgba(48, 153, 117, 0.8);
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  background-color: gray;
+}
+
 h1 {
   font-size: 92px;
 }

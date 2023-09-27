@@ -3,7 +3,14 @@ import './style.css'
 const animationContainer = document.querySelector('.animation-container') as HTMLDivElement;
 const animatedBlocks = animationContainer.children;
 
-document.addEventListener('DOMContentLoaded', loadAnimation);
+document.addEventListener('DOMContentLoaded', function () {
+  loadAnimation();
+  lineBackground();
+});
+
+window.addEventListener('resize', function () {
+  requestAnimationFrame(lineBackground);
+});
 
 async function loadAnimation() {
   const animations: Promise<Animation>[] = [];
@@ -31,4 +38,22 @@ async function loadAnimation() {
   await Promise.all(animations);
 
   animationContainer.remove();
+}
+
+function lineBackground() {
+  const spacing = window.innerWidth > 768 ? 335: 200;
+  const element = document.querySelector('.background') as HTMLDivElement;
+
+  element.innerHTML = '';
+
+  const lines = Math.ceil(window.innerWidth / spacing);
+  const lineElements = [];
+
+  for (let i = 0; i < lines; i++) {
+    const line = document.createElement('div');
+    line.classList.add('line');
+    lineElements.push(line);
+  }
+
+  element.append(...lineElements);
 }
